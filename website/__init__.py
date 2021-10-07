@@ -18,7 +18,7 @@ def create_app():
     #initialize db with flask app
     db.init_app(app)
 
-    from . import models
+    from .models import User, Order, Comment, Event, Category
 
     bootstrap = Bootstrap(app)
     
@@ -43,8 +43,9 @@ def create_app():
 
     from . import auth
     app.register_blueprint(auth.bp)
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
     
     return app
-
-
-
