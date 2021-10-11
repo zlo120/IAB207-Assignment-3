@@ -3,8 +3,10 @@ from flask_wtf import FlaskForm
 from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField
 from wtforms.fields.html5 import DateField, TimeField
 from wtforms.fields.core import IntegerField
-from wtforms.validators import InputRequired, Length, Email, EqualTo
+from wtforms.validators import InputRequired, Length, Email, EqualTo, Optional
 from wtforms.widgets.core import Input
+
+from datetime import datetime
 
 
 #creates the login information
@@ -42,3 +44,19 @@ class CreateEvent(FlaskForm):
     Category = StringField("Category", validators=[InputRequired()])
     
     Create = SubmitField("Create")
+
+def createEditForm(event):
+
+    class EditForm(FlaskForm):
+        Name = StringField("Name", validators=[Optional()], render_kw={"value":event.Name})
+        Date = DateField("Date", validators=[Optional()])
+        Time = TimeField("Date", validators=[Optional()])
+        Cost = IntegerField("Cost", validators=[Optional()], render_kw={"value":event.Cost})
+        Address = StringField("Address", validators=[Optional()], render_kw={"value":event.Address})
+        TotalTickets = IntegerField("Total number of tickets", validators=[Optional()], render_kw={"value":event.TotalTickets})
+        
+        Category = StringField("Category", validators=[Optional()], render_kw={"value":event.Category.Name})
+        
+        Create = SubmitField("Create")
+    
+    return EditForm()
