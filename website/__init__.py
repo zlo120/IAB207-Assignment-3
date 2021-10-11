@@ -44,6 +44,9 @@ def create_app():
     from . import auth
     app.register_blueprint(auth.bp)
 
+    from . import event
+    app.register_blueprint(event.eventbp)
+
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))

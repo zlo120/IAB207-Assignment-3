@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<form style="width:60%;" method="POST" action="">
+    {{ form.hidden_tag() }}
+
+    <div class="form-group">
+        {{form.Name.label}}
+        {{form.Name (class="form-control", placeholder="Name of your event")}}
+
+        {{form.Category.label}}
+        {{form.Category (class="form-control", placeholder="Category of your event")}}
+
+        {{form.Date.label}}
+        {{form.Date (class="form-control")}}
+
+        {{form.Time.label}}
+        {{form.Time (class="form-control")}}
+
+        {{form.Cost.label}}
+        {{form.Cost (class="form-control", placeholder="$AUD", type="number")}}
+
+        {{form.Address.label}}
+        {{form.Address (class="form-control", placeholder="Address for you event")}}
+
+        {{form.TotalTickets.label}}
+        {{form.TotalTickets (class="form-control", placeholder="Total number of tickets", type="number")}}
+    
+        {{form.Create (class="btn btn-primary mt-4")}}
+    </div>
+
+</form>
+
+{% endblock %}

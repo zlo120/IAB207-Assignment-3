@@ -1,7 +1,10 @@
 
 from flask_wtf import FlaskForm
 from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField
+from wtforms.fields.html5 import DateField, TimeField
+from wtforms.fields.core import IntegerField
 from wtforms.validators import InputRequired, Length, Email, EqualTo
+from wtforms.widgets.core import Input
 
 
 #creates the login information
@@ -25,3 +28,17 @@ class RegisterForm(FlaskForm):
 
     #submit button
     submit = SubmitField("Register")
+
+# EVENT FORMS
+
+class CreateEvent(FlaskForm):
+    Name = StringField("Name", validators=[InputRequired()])
+    Date = DateField("Date", validators=[InputRequired()])
+    Time = TimeField("Date", validators=[InputRequired()])
+    Cost = IntegerField("Cost", validators=[InputRequired()])
+    Address = StringField("Address", validators=[InputRequired()])
+    TotalTickets = IntegerField("Total number of tickets", validators=[InputRequired()])
+    
+    Category = StringField("Category", validators=[InputRequired()])
+    
+    Create = SubmitField("Create")
