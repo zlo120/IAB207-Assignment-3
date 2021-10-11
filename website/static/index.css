@@ -27,3 +27,29 @@ hr {
     border: 0; 
     border-top: 1px solid white;
 }
+
+#search {
+    display: flex;
+    justify-content: center;
+}
+
+.maxH {
+    height: 200px;
+}
+
+.maxW {
+    height: 100%;
+}
+
+.padS {
+    padding-left: 4%;
+    padding-right: 4%;
+}
+
+.padB {
+    padding-bottom: 4%;
+}
+
+.padT {
+    padding-Top: 2%;
+}

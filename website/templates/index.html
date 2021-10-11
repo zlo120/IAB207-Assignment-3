@@ -1,13 +1,439 @@
 {% extends "base.html" %}
 
+{% block title %}
+Home
+{% endblock %}
+
 {% block header %}
 
-<h1>Welcome to Party Event Management</h1>
+<section>
+    <div class="p-2 mb-4 bg-light rounded-3 col">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">Party Event Management</h1>
+            <p class="col-md-8 fs-4">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dapibus metus vel sapien scelerisque ultricies. Quisque tristique, nunc non iaculis tempus, ipsum mi malesuada dolor, quis maximus tellus risus quis.</p>
+
+            <form id="search">
+                <input class="form-control me-2" type="search" placeholder="Search Events" aria-label="Search">
+                <button class="btn btn-primary btn-lg col-2" type="button">Search</button>
+            </form>
+
+        </div>
+    </div>
+</section>
 
 {% endblock %}
 
 {% block body %}
 
+
+<section>
+    <p class="padS">
+        <b>Featured Event Categories:</b>
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">Halloween</button>
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Rock</button>
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">90's</button>
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample4" aria-expanded="false" aria-controls="multiCollapseExample4">Wine</button>
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample5" aria-expanded="false" aria-controls="multiCollapseExample5">Whiskey</button>
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2 multiCollapseExample3 multiCollapseExample4 multiCollapseExample5">All</button>
+    </p>
+
+    <div class="row padS padB" >
+        <section  class="padB collapse.show multi-collapse" id="multiCollapseExample1">
+
+            <div class="row">
+
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <div class="card">
+                        <img src="IMG/Trick-or-Treat.jpg"  class="card-img-top maxH" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Trick or Treat Party</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor ipsum ornare dui ullamcorper, eget imperdiet diam iaculis. Integer fermentum ante sed lorem consectetur, sed ultrices sapien mattis. In eu tortor hendrerit, sagittis nisi luctus, egestas lectus. </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Event Status: Upcoming</li>
+                            <li class="list-group-item">Tickets Left: 100</li>
+                            <li class="list-group-item">Ticket Price: $20</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="eventDetails.html" class="btn btn-primary btn-lg col-12">Event Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <div class="card">
+                        <img src="IMG/halloween-2019-blog-1-1-347bsjou8sdvn8qy8efc5oeewxw9mtxd4hu4zm7adq07o7nge.jpg" class="maxH card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Pumpkin Carving Party</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor ipsum ornare dui ullamcorper, eget imperdiet diam iaculis. Integer fermentum ante sed lorem consectetur, sed ultrices sapien mattis. In eu tortor hendrerit, sagittis nisi luctus, egestas lectus. </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Event Status: Booked</li>
+                            <li class="list-group-item">Tickets Left: 0</li>
+                            <li class="list-group-item">Ticket Price: $25</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="eventDetails.html" class="btn btn-primary btn-lg col-12">Event Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <div class="card">
+                        <img src="IMG/halloween-2870607_1920.jpg" class="maxH card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Spooky Dress Party</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor ipsum ornare dui ullamcorper, eget imperdiet diam iaculis. Integer fermentum ante sed lorem consectetur, sed ultrices sapien mattis. In eu tortor hendrerit, sagittis nisi luctus, egestas lectus. </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Event Status: Upcoming</li>
+                            <li class="list-group-item">Tickets Left: 37</li>
+                            <li class="list-group-item">Ticket Price: $55</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="eventDetails.html" class="btn btn-primary btn-lg col-12">Event Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <div class="card">
+                        <img src="IMG/halloween1.jpg" class="maxH card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Candy Hunt Party</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor ipsum ornare dui ullamcorper, eget imperdiet diam iaculis. Integer fermentum ante sed lorem consectetur, sed ultrices sapien mattis. In eu tortor hendrerit, sagittis nisi luctus, egestas lectus. </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Event Status: Cancelled</li>
+                            <li class="list-group-item">Tickets Left: -</li>
+                            <li class="list-group-item">Ticket Price: -</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="eventDetails.html" class="btn btn-primary btn-lg col-12">Event Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <section  class="padB collapse multi-collapse" id="multiCollapseExample2">
+
+            <div class="row">
+
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <div class="card">
+                        <img src="IMG/rock1.jpg"  class="card-img-top maxH" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Keg Rock Party</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor ipsum ornare dui ullamcorper, eget imperdiet diam iaculis. Integer fermentum ante sed lorem consectetur, sed ultrices sapien mattis. In eu tortor hendrerit, sagittis nisi luctus, egestas lectus. </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Event Status: Upcoming</li>
+                            <li class="list-group-item">Tickets Left: 22</li>
+                            <li class="list-group-item">Ticket Price: $22</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="eventDetails.html" class="btn btn-primary btn-lg col-12">Event Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <div class="card">
+                        <img src="IMG/rock2.jpg" class="maxH card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Rock Jam Party</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor ipsum ornare dui ullamcorper, eget imperdiet diam iaculis. Integer fermentum ante sed lorem consectetur, sed ultrices sapien mattis. In eu tortor hendrerit, sagittis nisi luctus, egestas lectus. </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Event Status: Upcoming</li>
+                            <li class="list-group-item">Tickets Left: 200</li>
+                            <li class="list-group-item">Ticket Price: $15</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="eventDetails.html" class="btn btn-primary btn-lg col-12">Event Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <div class="card">
+                        <img src="IMG/rock4.jpg" class="maxH card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Learn to Rock Party</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor ipsum ornare dui ullamcorper, eget imperdiet diam iaculis. Integer fermentum ante sed lorem consectetur, sed ultrices sapien mattis. In eu tortor hendrerit, sagittis nisi luctus, egestas lectus. </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Event Status: Cancelled</li>
+                            <li class="list-group-item">Tickets Left: -</li>
+                            <li class="list-group-item">Ticket Price: -</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="eventDetails.html" class="btn btn-primary btn-lg col-12">Event Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <div class="card">
+                        <img src="IMG/rock3.jpg" class="maxH card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Rock Costume Party</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor ipsum ornare dui ullamcorper, eget imperdiet diam iaculis. Integer fermentum ante sed lorem consectetur, sed ultrices sapien mattis. In eu tortor hendrerit, sagittis nisi luctus, egestas lectus. </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Event Status: Booked</li>
+                            <li class="list-group-item">Tickets Left: 0</li>
+                            <li class="list-group-item">Ticket Price: $99</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="eventDetails.html" class="btn btn-primary btn-lg col-12">Event Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </section>
+        <section  class="padB collapse multi-collapse" id="multiCollapseExample3">
+
+            <div class="row">
+
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <div class="card">
+                        <img src="IMG/90-1.png"  class="card-img-top maxH" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">90's Party</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor ipsum ornare dui ullamcorper, eget imperdiet diam iaculis. Integer fermentum ante sed lorem consectetur, sed ultrices sapien mattis. In eu tortor hendrerit, sagittis nisi luctus, egestas lectus. </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Event Status: Upcoming</li>
+                            <li class="list-group-item">Tickets Left: 100</li>
+                            <li class="list-group-item">Ticket Price: $20</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="eventDetails.html" class="btn btn-primary btn-lg col-12">Event Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <div class="card">
+                        <img src="IMG/90-2.jpg" class="maxH card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">90's Costume Party</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor ipsum ornare dui ullamcorper, eget imperdiet diam iaculis. Integer fermentum ante sed lorem consectetur, sed ultrices sapien mattis. In eu tortor hendrerit, sagittis nisi luctus, egestas lectus. </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Event Status: Booked</li>
+                            <li class="list-group-item">Tickets Left: 0</li>
+                            <li class="list-group-item">Ticket Price: $25</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="eventDetails.html" class="btn btn-primary btn-lg col-12">Event Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <div class="card">
+                        <img src="IMG/90-3.jpg" class="maxH card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Back to the 90's</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor ipsum ornare dui ullamcorper, eget imperdiet diam iaculis. Integer fermentum ante sed lorem consectetur, sed ultrices sapien mattis. In eu tortor hendrerit, sagittis nisi luctus, egestas lectus. </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Event Status: Upcoming</li>
+                            <li class="list-group-item">Tickets Left: 37</li>
+                            <li class="list-group-item">Ticket Price: $55</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="eventDetails.html" class="btn btn-primary btn-lg col-12">Event Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <div class="card">
+                        <img src="IMG/90-4.jpg" class="maxH card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">90's School Yard Party</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor ipsum ornare dui ullamcorper, eget imperdiet diam iaculis. Integer fermentum ante sed lorem consectetur, sed ultrices sapien mattis. In eu tortor hendrerit, sagittis nisi luctus, egestas lectus. </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Event Status: Cancelled</li>
+                            <li class="list-group-item">Tickets Left: -</li>
+                            <li class="list-group-item">Ticket Price: -</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="eventDetails.html" class="btn btn-primary btn-lg col-12">Event Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <section  class="padB collapse multi-collapse" id="multiCollapseExample4">
+
+            <div class="row">
+
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <div class="card">
+                        <img src="IMG/w1.jpg"  class="card-img-top maxH" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Wine Friends Gathering</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor ipsum ornare dui ullamcorper, eget imperdiet diam iaculis. Integer fermentum ante sed lorem consectetur, sed ultrices sapien mattis. In eu tortor hendrerit, sagittis nisi luctus, egestas lectus. </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Event Status: Upcoming</li>
+                            <li class="list-group-item">Tickets Left: 100</li>
+                            <li class="list-group-item">Ticket Price: $20</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="eventDetails.html" class="btn btn-primary btn-lg col-12">Event Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <div class="card">
+                        <img src="IMG/w2.jpg" class="maxH card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Wine Sampling Session</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor ipsum ornare dui ullamcorper, eget imperdiet diam iaculis. Integer fermentum ante sed lorem consectetur, sed ultrices sapien mattis. In eu tortor hendrerit, sagittis nisi luctus, egestas lectus. </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Event Status: Booked</li>
+                            <li class="list-group-item">Tickets Left: 0</li>
+                            <li class="list-group-item">Ticket Price: $25</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="eventDetails.html" class="btn btn-primary btn-lg col-12">Event Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <div class="card">
+                        <img src="IMG/w3.jpg" class="maxH card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Wine & Cheese Night</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor ipsum ornare dui ullamcorper, eget imperdiet diam iaculis. Integer fermentum ante sed lorem consectetur, sed ultrices sapien mattis. In eu tortor hendrerit, sagittis nisi luctus, egestas lectus. </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Event Status: Upcoming</li>
+                            <li class="list-group-item">Tickets Left: 37</li>
+                            <li class="list-group-item">Ticket Price: $55</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="eventDetails.html" class="btn btn-primary btn-lg col-12">Event Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <div class="card">
+                        <img src="IMG/w4.jpg" class="maxH card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Sips & Dip's</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor ipsum ornare dui ullamcorper, eget imperdiet diam iaculis. Integer fermentum ante sed lorem consectetur, sed ultrices sapien mattis. In eu tortor hendrerit, sagittis nisi luctus, egestas lectus. </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Event Status: Cancelled</li>
+                            <li class="list-group-item">Tickets Left: -</li>
+                            <li class="list-group-item">Ticket Price: -</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="eventDetails.html" class="btn btn-primary btn-lg col-12">Event Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <section  class="padB collapse multi-collapse" id="multiCollapseExample5">
+
+            <div class="row">
+
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <div class="card">
+                        <img src="IMG/wh1.jpg"  class="card-img-top maxH" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Whisky Tasting</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor ipsum ornare dui ullamcorper, eget imperdiet diam iaculis. Integer fermentum ante sed lorem consectetur, sed ultrices sapien mattis. In eu tortor hendrerit, sagittis nisi luctus, egestas lectus. </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Event Status: Upcoming</li>
+                            <li class="list-group-item">Tickets Left: 100</li>
+                            <li class="list-group-item">Ticket Price: $20</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="eventDetails.html" class="btn btn-primary btn-lg col-12">Event Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <div class="card">
+                        <img src="IMG/wh2.jpg" class="maxH card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Whisky & Platters</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor ipsum ornare dui ullamcorper, eget imperdiet diam iaculis. Integer fermentum ante sed lorem consectetur, sed ultrices sapien mattis. In eu tortor hendrerit, sagittis nisi luctus, egestas lectus. </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Event Status: Booked</li>
+                            <li class="list-group-item">Tickets Left: 0</li>
+                            <li class="list-group-item">Ticket Price: $25</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="eventDetails.html" class="btn btn-primary btn-lg col-12">Event Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <div class="card">
+                        <img src="IMG/wh3.jpg" class="maxH card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Whisky on The Rocks Night</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor ipsum ornare dui ullamcorper, eget imperdiet diam iaculis. Integer fermentum ante sed lorem consectetur, sed ultrices sapien mattis. In eu tortor hendrerit, sagittis nisi luctus, egestas lectus. </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Event Status: Upcoming</li>
+                            <li class="list-group-item">Tickets Left: 37</li>
+                            <li class="list-group-item">Ticket Price: $55</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="eventDetails.html" class="btn btn-primary btn-lg col-12">Event Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <div class="card">
+                        <img src="IMG/wh4.jpg" class="maxH card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Distillery Crawl Night</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse auctor ipsum ornare dui ullamcorper, eget imperdiet diam iaculis. Integer fermentum ante sed lorem consectetur, sed ultrices sapien mattis. In eu tortor hendrerit, sagittis nisi luctus, egestas lectus. </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Event Status: Cancelled</li>
+                            <li class="list-group-item">Tickets Left: -</li>
+                            <li class="list-group-item">Ticket Price: -</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="eventDetails.html" class="btn btn-primary btn-lg col-12">Event Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+</section>
 {% endblock %}
 
 {% block footer %}
