@@ -57,3 +57,7 @@ hr {
 .padT {
     padding-Top: 2%;
 }
+
+.formCentre {
+    margin: auto;
+}
