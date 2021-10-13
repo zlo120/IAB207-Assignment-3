@@ -59,5 +59,6 @@ hr {
 }
 
 .formCentre {
-    margin: auto;
+   display: block;
+   margin: auto;
 }
