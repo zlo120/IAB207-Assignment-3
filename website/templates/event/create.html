@@ -2,10 +2,10 @@
 
 {% block body %}
 
-<form class="formCentre" style="width:60%;" method="POST" action="">
+<form  class="formCentre" style="width:60%;" method="POST" action="" enctype="multipart/form-data">
     {{ form.hidden_tag() }}
 
-    <div class="form-group">
+    <div style="color: white;" class="form-group">
         {{form.Name.label}}
         {{form.Name (class="form-control", placeholder="Name of your event")}}
 
@@ -26,6 +26,12 @@
 
         {{form.TotalTickets.label}}
         {{form.TotalTickets (class="form-control", placeholder="Total number of tickets", type="number")}}
+
+        {{form.CoverImage.label}}
+        {{form.CoverImage (class="form-control")}}
+        {% for error in form.CoverImage.errors %}
+            <p style="color: white;", >{{ error }} </p> 
+        {% endfor %}
     
         {{form.Create (class="btn btn-primary mt-4")}}
     </div>

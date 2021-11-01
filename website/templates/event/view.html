@@ -28,8 +28,26 @@
     <br>
 
     <h2>Comments</h2>
+
+    <!-- Post a comment -->
+    {% if current_user.is_authenticated %}
+    <form action="" method="POST">
+      {{form.hidden_tag()}}
+      <div class="form-group">
+
+        {{form.Content()}}
+        {{form.Submit()}}
+
+      </div>
+    </form>
+    {%else%}
+    <h4>Log in now to comment!</h4>
+    {% endif %}
+ 
+    {% if event.Comments | length < 1 %}
+    <h3>There doesn't seem to be any comments yet!</h3>
+    {% endif %}
     
 </div>
 
 {% endblock %}
-

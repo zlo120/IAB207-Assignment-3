@@ -36,6 +36,10 @@ def create_app():
     #def load_user(user_id):
     #    return User.query.get(int(user_id))
 
+    #config upload folder
+    UPLOAD_FOLDER = '/static/events'
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
     #importing views module here to avoid circular references
     # a commonly used practice.
     from . import views

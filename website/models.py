@@ -45,6 +45,9 @@ class Event(db.Model):
     AvailableTickets = db.Column(db.Integer, nullable = False)
     TotalTickets = db.Column(db.Integer, nullable = False)
 
+    # Image file location
+    Image = db.Column(db.String(256), nullable = True)
+
     # Foreign keys : User, Category
     Username = db.Column(db.Integer, db.ForeignKey('users.Username'))
     CategoryID = db.Column(db.Integer, db.ForeignKey('categories.CategoryID'))

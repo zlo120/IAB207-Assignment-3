@@ -1,13 +1,11 @@
 
 from flask_wtf import FlaskForm
-from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField
+from wtforms.fields import SubmitField, StringField, PasswordField, IntegerField
 from wtforms.fields.html5 import DateField, TimeField
-from wtforms.fields.core import IntegerField
-from wtforms.validators import InputRequired, Length, Email, EqualTo, Optional
-from wtforms.widgets.core import Input
+from wtforms.validators import InputRequired, Email, EqualTo, Optional
+from flask_wtf.file import FileField, FileRequired, FileAllowed
 
 from datetime import datetime
-
 
 #creates the login information
 class LoginForm(FlaskForm):
@@ -33,6 +31,8 @@ class RegisterForm(FlaskForm):
 
 # EVENT FORMS
 
+ALLOWED_FILE = ['.PNG','.png',".jpg",'.JPG','.jpeg','.jpeg']
+
 class CreateEvent(FlaskForm):
     Name = StringField("Name", validators=[InputRequired()])
     Date = DateField("Date", validators=[InputRequired()])
@@ -42,6 +42,8 @@ class CreateEvent(FlaskForm):
     TotalTickets = IntegerField("Total number of tickets", validators=[InputRequired()])
     
     Category = StringField("Category", validators=[InputRequired()])
+
+    CoverImage = FileField('Image', validators=[ FileRequired(message='Image cannot be empty'),  FileAllowed( ['PNG','png',"jpg",'JPG','jpeg','JPEG'] , message='Only supports jpg, jpeg and png!')])
     
     Create = SubmitField("Create")
 
@@ -60,3 +62,8 @@ def createEditForm(event):
         Create = SubmitField("Create")
     
     return EditForm()
+
+# Comment form
+class CreateComment(FlaskForm):
+    Content = StringField("Comment", validators=[InputRequired()])
+    Submit = SubmitField("Post")

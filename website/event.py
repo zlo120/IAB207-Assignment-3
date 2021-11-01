@@ -2,12 +2,13 @@ from threading import current_thread
 from flask import Blueprint
 from flask.helpers import url_for
 from flask.templating import render_template
-from werkzeug.utils import redirect
+from werkzeug.utils import redirect, secure_filename
+import os
 from datetime import datetime
 
 from . import db
-from .forms import CreateEvent, createEditForm
-from .models import Event, Category
+from .forms import CreateEvent, createEditForm, CreateComment
+from .models import Event, Category, Comment
 
 eventbp = Blueprint('event', __name__, url_prefix='/event')
 
@@ -19,6 +20,8 @@ def create():
 
     if form.validate_on_submit():        
         category = Category.query.filter_by(Name = form.Category.data.upper()).first()
+
+        print(form.CoverImage.data)
         
         if category is None:
             category = Category(
@@ -30,6 +33,8 @@ def create():
 
             category = Category.query.filter_by(Name = form.Category.data.upper()).first()
 
+        db_file_path = check_upload_file(form)
+
         event = Event(
             Name = form.Name.data,
             Status = "Upcoming",
@@ -38,16 +43,29 @@ def create():
             Address = form.Address.data,
             AvailableTickets = form.TotalTickets.data,
             TotalTickets = form.TotalTickets.data,
-            CategoryID = category.CategoryID
-            
+            CategoryID = category.CategoryID,
+            Image = db_file_path        
         )
 
         db.session.add(event)
         db.session.commit()
 
         return redirect(url_for('main.index'))
-
     return render_template("event/create.html", form = form)
+
+def check_upload_file(form):
+  #get file data from form  
+  fp=form.CoverImage.data
+  filename=fp.filename
+  #get the current path of the module file… store image file relative to this path  
+  BASE_PATH=os.path.dirname(__file__)
+  #upload file location – directory of this file/static/image
+  upload_path=os.path.join(BASE_PATH,'static/events',secure_filename(filename))
+  #store relative path in DB as image location in HTML is relative
+  db_upload_path='/static/events/' + secure_filename(filename)
+  #save the file and return the db upload path  
+  fp.save(upload_path)
+  return db_upload_path
 
 @eventbp.route('/edit/<int:id>', methods=['GET', 'POST'])
 def edit(id):
@@ -93,7 +111,22 @@ def edit(id):
 def view(id):
     event = Event.query.filter_by(EventID = id).first()
 
+    form = CreateComment()
+
     if event is None:
         return "This event doesn't exist"
 
-    return render_template("event/view.html", event = event)
+    if form.validate_on_submit():
+        # comment = Comment(
+        #     # Username = current_user.Username,
+        #     EventID = id,
+        #     Comment = form.Content.data,
+        #     DateTime = datetime.date(datetime.now())
+        # )
+
+        # db.session.add(comment)
+        # db.session.commit()
+
+        return redirect(url_for('event.view', id=id))
+
+    return render_template("event/view.html", event = event, form = form)
