@@ -1,6 +1,6 @@
 
 from flask_wtf import FlaskForm
-from wtforms.fields import SubmitField, StringField, PasswordField, IntegerField
+from wtforms.fields import SubmitField, StringField, PasswordField, IntegerField, TextAreaField
 from wtforms.fields.html5 import DateField, TimeField
 from wtforms.validators import InputRequired, Email, EqualTo, Optional
 from flask_wtf.file import FileField, FileRequired, FileAllowed
@@ -35,6 +35,7 @@ ALLOWED_FILE = ['.PNG','.png',".jpg",'.JPG','.jpeg','.jpeg']
 
 class CreateEvent(FlaskForm):
     Name = StringField("Name", validators=[InputRequired()])
+    Description = TextAreaField("Description", validators=[InputRequired()])
     Date = DateField("Date", validators=[InputRequired()])
     Time = TimeField("Date", validators=[InputRequired()])
     Cost = IntegerField("Cost", validators=[InputRequired()])
@@ -51,6 +52,7 @@ def createEditForm(event):
 
     class EditForm(FlaskForm):
         Name = StringField("Name", validators=[Optional()], render_kw={"value":event.Name})
+        Description = TextAreaField("Description", validators=[Optional()], render_kw={"value":event.Name})
         Date = DateField("Date", validators=[Optional()])
         Time = TimeField("Date", validators=[Optional()])
         Cost = IntegerField("Cost", validators=[Optional()], render_kw={"value":event.Cost})

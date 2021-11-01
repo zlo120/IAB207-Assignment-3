@@ -2,6 +2,10 @@
     color: white;
 }
 
+.white p {
+    color: white;
+}
+
 .black {
     color: black;   
 }
@@ -67,10 +71,18 @@ hr {
    margin: auto;
 }
 
-.card {
-    
+.card-title {
+    color: black;
 }
 
-.card-title {
+/* .event-content {
+    text-align: center;
+} */
+
+.comments{
+    text-align: left;
+}
+
+.modal-body p {
     color: black;
 }

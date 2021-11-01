@@ -37,6 +37,7 @@ def create():
 
         event = Event(
             Name = form.Name.data,
+            Description = form.Description.data,
             Status = "Upcoming",
             DateTime = datetime.strptime( (str(form.Date.data) + ' ' + str(form.Time.data)) , "%Y-%m-%d %H:%M:%S"),
             Cost = form.Cost.data,
@@ -97,6 +98,7 @@ def edit(id):
         event.Cost = form.Cost.data
         event.Address = form.Address.data
         event.TotalTickets = form.TotalTickets.data
+        event.Description = form.Description.data
 
         if form.Date.data is not None and form.Time.data is not None:
             event.DateTime = datetime.strptime( (str(form.Date.data) + ' ' + str(form.Time.data)) , "%Y-%m-%d %H:%M:%S")
@@ -105,7 +107,7 @@ def edit(id):
 
         return redirect(url_for('main.index'))
 
-    return render_template('event/update.html', form = form)
+    return render_template('event/update.html', form = form, event = event)
 
 @eventbp.route('/view/<int:id>', methods=['GET', 'POST'])
 def view(id):
