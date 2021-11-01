@@ -3,6 +3,8 @@
 {% block body %}
 
 <div class="white">
+
+  <img src="{{ url_for('static' , filename=event.Image) }}" alt="">
     <h1>{{event.Name}}</h1>
 
     <strong>{{event.Status}}</strong>

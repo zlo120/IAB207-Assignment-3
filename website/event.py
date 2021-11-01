@@ -62,7 +62,7 @@ def check_upload_file(form):
   #upload file location – directory of this file/static/image
   upload_path=os.path.join(BASE_PATH,'static/events',secure_filename(filename))
   #store relative path in DB as image location in HTML is relative
-  db_upload_path='/static/events/' + secure_filename(filename)
+  db_upload_path='/events/' + secure_filename(filename)
   #save the file and return the db upload path  
   fp.save(upload_path)
   return db_upload_path
@@ -128,5 +128,5 @@ def view(id):
         # db.session.commit()
 
         return redirect(url_for('event.view', id=id))
-
+    
     return render_template("event/view.html", event = event, form = form)
