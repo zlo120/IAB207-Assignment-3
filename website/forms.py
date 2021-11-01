@@ -37,7 +37,7 @@ class CreateEvent(FlaskForm):
     Name = StringField("Name", validators=[InputRequired()])
     Description = TextAreaField("Description", validators=[InputRequired()])
     Date = DateField("Date", validators=[InputRequired()])
-    Time = TimeField("Date", validators=[InputRequired()])
+    Time = TimeField("Time", validators=[InputRequired()])
     Cost = IntegerField("Cost", validators=[InputRequired()])
     Address = StringField("Address", validators=[InputRequired()])
     TotalTickets = IntegerField("Total number of tickets", validators=[InputRequired()])
@@ -54,7 +54,7 @@ def createEditForm(event):
         Name = StringField("Name", validators=[Optional()], render_kw={"value":event.Name})
         Description = TextAreaField("Description", validators=[Optional()], render_kw={"value":event.Name})
         Date = DateField("Date", validators=[Optional()])
-        Time = TimeField("Date", validators=[Optional()])
+        Time = TimeField("Time", validators=[Optional()])
         Cost = IntegerField("Cost", validators=[Optional()], render_kw={"value":event.Cost})
         Address = StringField("Address", validators=[Optional()], render_kw={"value":event.Address})
         TotalTickets = IntegerField("Total number of tickets", validators=[Optional()], render_kw={"value":event.TotalTickets})
@@ -64,6 +64,11 @@ def createEditForm(event):
         Create = SubmitField("Create")
     
     return EditForm()
+
+# Booking form
+class CreateBooking(FlaskForm):
+    Amount = IntegerField("Number of Tickets", validators=[InputRequired()])
+    Submit = SubmitField("Place order")
 
 # Comment form
 class CreateComment(FlaskForm):

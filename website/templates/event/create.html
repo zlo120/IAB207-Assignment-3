@@ -2,8 +2,10 @@
 
 {% block body %}
 
-<form  class="formCentre" style="width:60%;" method="POST" action="" enctype="multipart/form-data">
+<form  class="formCentre" style="width:40%;" method="POST" action="" enctype="multipart/form-data">
     {{ form.hidden_tag() }}
+
+    <h2 class="mt-5">Create an event</h2>
 
     <div style="color: white;" class="form-group">
         {{form.Name.label}}

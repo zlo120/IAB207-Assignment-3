@@ -48,11 +48,32 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <p>Hey there</p>
+                
+                <form class="d-flex justify-content-center" action="{{ url_for('event.booking', id = event.EventID) }}" method="POST">
+
+                  {{form.hidden_tag()}}
+
+                  <div class="form-group">
+                    {{bookingForm.Amount.label}}
+                    {{bookingForm.Amount(class="form-control", type="number")}}
+
+                    <label for="creditCard">Credit Card Number</label>
+                    <input id="creditCard" type="text" class="form-control" required>
+
+                    <label for="expiry">Credit Card Expiry</label>
+                    <div style="color: black; font-size: 1.5em;" id="expiry" class="d-flex">
+                      <input type="text" class="form-control" maxlength="2" style="width: 60px;" placeholder="MM">/<input type="text" class="form-control" maxlength="2"  style="width: 60px;" placeholder="YY" required>
+                    </div>
+
+                    {{bookingForm.Submit(class="form-control mt-5")}}
+
+                  </div>
+
+                </form>
+
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
               </div>
             </div>
           </div>
@@ -62,6 +83,7 @@
 
     <div class="comments">
       <h2>Comments</h2>
+      <hr>
 
       <!-- Post a comment -->
       {% if current_user.is_authenticated %}
@@ -79,7 +101,7 @@
       {% endif %}
   
       {% if event.Comments | length < 1 %}
-      <h3>There doesn't seem to be any comments yet!</h3>
+      <h4>There doesn't seem to be any comments yet...</h4>
       {% endif %}
     </div>
     

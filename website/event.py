@@ -7,8 +7,8 @@ import os
 from datetime import datetime
 
 from . import db
-from .forms import CreateEvent, createEditForm, CreateComment
-from .models import Event, Category, Comment
+from .forms import CreateEvent, createEditForm, CreateComment, CreateBooking
+from .models import Event, Category, Comment, Order
 
 eventbp = Blueprint('event', __name__, url_prefix='/event')
 
@@ -115,6 +115,8 @@ def view(id):
 
     form = CreateComment()
 
+    bookingForm = CreateBooking()
+
     if event is None:
         return "This event doesn't exist"
 
@@ -131,4 +133,24 @@ def view(id):
 
         return redirect(url_for('event.view', id=id))
     
-    return render_template("event/view.html", event = event, form = form)
+    return render_template("event/view.html", event = event, form = form , bookingForm = bookingForm)
+
+@eventbp.route('/booking/<int:id>', methods=['GET', 'POST'])
+def booking(id):
+
+    form = CreateBooking()
+
+    if form.validate_on_submit():
+
+        # order = Order(
+        #     NumTickets = form.Amount.data,
+        #     EventID = id,
+        #     Username = current_user.Username
+        # )
+
+        # db.session.add(order)
+        # db.session.commit()
+
+        return redirect(url_for('event.view', id = id))
+
+    return redirect(url_for('event.view', id = id))    
