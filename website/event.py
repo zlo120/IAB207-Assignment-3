@@ -1,7 +1,8 @@
 from threading import current_thread
-from flask import Blueprint
+from flask import Blueprint, abort
 from flask.helpers import url_for
 from flask.templating import render_template
+from flask_login.utils import login_required
 from werkzeug.utils import redirect, secure_filename
 import os
 from datetime import datetime
@@ -14,6 +15,7 @@ eventbp = Blueprint('event', __name__, url_prefix='/event')
 
 # Page to create an event
 @eventbp.route('/create', methods=['GET', 'POST'])
+@login_required
 def create():
 
     form = CreateEvent()
@@ -115,10 +117,10 @@ def view(id):
 
     form = CreateComment()
 
-    bookingForm = bookEvent(event)
-
     if event is None:
-        return "This event doesn't exist"
+        return abort(404)
+
+    bookingForm = bookEvent(event)
 
     if form.validate_on_submit():
         # comment = Comment(
@@ -144,14 +146,14 @@ def booking(id):
 
     if form.validate_on_submit():
 
-        # order = Order(
-        #     NumTickets = form.Amount.data,
-        #     EventID = id,
-        #     Username = current_user.Username
-        # )
+        order = Order(
+            NumTickets = form.Amount.data,
+            EventID = id,
+            Username = current_user.Username
+        )
 
-        # db.session.add(order)
-        # db.session.commit()
+        db.session.add(order)
+        db.session.commit()
 
         return redirect(url_for('event.view', id = id))
 

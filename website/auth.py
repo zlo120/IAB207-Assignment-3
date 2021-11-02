@@ -19,40 +19,40 @@ def login(): #view function
     if(login_form.validate_on_submit() == True):
         user_name = login_form.user_name.data
         password = login_form.password.data
-        u1 = User.query.filter_by(name = user_name).first()
+        u1 = User.query.filter_by(Username = user_name).first()
         if u1 is None:
             error = 'Incorrect user name'
-        elif not check_password_hash(u1.password, password): # takes the hash and password
+        elif not check_password_hash(u1.password_hash, password): # takes the hash and password
             error = 'Incorrect password'
         if error is None:
             login_user(u1)
-            nextp = request.args.get('next') # this gives the url from where the login page was accessed
-            print(nextp)
-            if next is None or not nextp.startswith('/'):
-                return redirect(url_for('index'))
-            return redirect(nextp)
+            flash("You are succesfully logged in!")
+            return redirect(url_for('main.index'))
         else:
             flash(error)
+            return redirect(url_for('auth.login'))
+
     return render_template('user/login.html', form = login_form, heading = 'Login')
 
 @bp.route('/register', methods = ['GET', 'POST'])
 def register():
     register = RegisterForm()
-    if (register.validate_on_submit() == True):
+    if register.validate_on_submit():
+        name = register.name.data
         uname = register.user_name.data
         email = register.email_id.data
         number = register.contact_number.data
         address = register.address.data
         pwd = register.password.data
-        u1 = User.query.filter_by(name = uname).first()
+        u1 = User.query.filter_by(Username = uname).first()
         if u1:
-            flash('User already exists, please login')
-            return redirect(url_for('auth.login'))
+            flash('An account with that username already exists')
+            return redirect(url_for('auth.register'))
         pwd_hash = generate_password_hash(pwd)
-        new_user = User(Username = uname, Email = email, ContactNum = number, address = address, password_hash = pwd_hash)
+        new_user = User(Name = name, Username = uname, Email = email, ContactNum = number, address = address, password_hash = pwd_hash)
         db.session.add(new_user)
         db.session.commit()
-        return redirect (url_for('main_index'))
+        return redirect (url_for('main.index'))
     else:
         return render_template('user/register.html', form = register, heading = 'Register')
 
@@ -60,4 +60,5 @@ def register():
 @login_required
 def logout():
     logout_user()
-    return 'You have been logged out'
+    flash("You are now logged out")
+    return redirect(url_for('main.index'))

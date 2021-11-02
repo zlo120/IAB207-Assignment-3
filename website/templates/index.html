@@ -14,6 +14,15 @@ p {
 <section>
     <div class="p-2 mb-4 rounded-3 col">
         <div style="color: white" class="container-fluid py-5">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in get_flashed_messages() %}
+                <div class ="alert alert-primary">
+                    {{message}}
+                </div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
             <h1 class="display-5 fw-bold">Party Event Management</h1>
             <p style="color: white" class="col-md-8 fs-4">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dapibus metus vel sapien scelerisque ultricies. Quisque tristique, nunc non iaculis tempus, ipsum mi malesuada dolor, quis maximus tellus risus quis.</p>
@@ -439,8 +448,4 @@ p {
 
     </div>
 </section>
-{% endblock %}
-
-{% block footer %}
-
 {% endblock %}

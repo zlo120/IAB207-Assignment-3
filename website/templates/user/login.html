@@ -3,9 +3,9 @@
 
 {% block body%}
 
-<div class="container-fluid">
-    <div class="page-header">
-        <h4>{{heading}}</h4>
+<div class="container">
+    <div class="page-header mt-5">
+        <h4 style="text-align: center;">{{heading}}</h4>
     </div>
 
     {% with messages = get_flashed_messages() %}
@@ -23,15 +23,12 @@
     {% endwith %}
 
     <!-- Form rendering is simple and easy if using bootstrap -->
-    <div class="col-md-6" style="color: white;">
+    <div class="col-md-6 formCentre" style="color: white;">
         {{wtf.quick_form(form, button_map={'submit' : 'primary'})}}
-    </div>
 
-    <!-- When you have login form, then do show the user a link to register -->
-    {% if heading|lower == 'login' %}
-    <div class="col-md-4">
+        <!-- When you have login form, then do show the user a link to register -->
         <p style="color: white;">New user? <a href="{{ url_for('auth.register') }}">Click here to register</a>.</p>
     </div>
-    {% endif %}
+    
 </div>
 {% endblock %}

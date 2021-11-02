@@ -3,7 +3,8 @@ from flask_login import UserMixin
 
 class User(db.Model, UserMixin):
     __tablename__ = "users"
-    Username = db.Column(db.String(256), primary_key = True, nullable = False)
+    ID = db.Column(db.Integer, primary_key = True, nullable = False, autoincrement=True)
+    Username = db.Column(db.String(256), nullable = False)
     password_hash = db.Column(db.String(255), nullable = False)
     Name = db.Column(db.String(256), nullable = False)
     Email = db.Column(db.String(256), nullable = False)
@@ -13,6 +14,9 @@ class User(db.Model, UserMixin):
     # Foreign keys : Comment, Orders, Events?
     OrderID = db.Column(db.Integer, db.ForeignKey('orders.OrderID'))
     Comments = db.relationship("Comment", backref="User")
+
+    def get_id(self):
+        return self.ID
 
 class Order(db.Model):
     __tablename__ = "orders"

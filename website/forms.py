@@ -2,7 +2,7 @@
 from flask_wtf import FlaskForm
 from wtforms.fields import SubmitField, StringField, PasswordField, IntegerField, FloatField, TextAreaField
 from wtforms.fields.html5 import DateField, TimeField
-from wtforms.validators import InputRequired, Email, EqualTo, Optional, Length
+from wtforms.validators import InputRequired, Email, EqualTo, Optional, Length, NumberRange
 from flask_wtf.file import FileField, FileRequired, FileAllowed
 
 from datetime import datetime
@@ -15,9 +15,10 @@ class LoginForm(FlaskForm):
 
  # this is the registration form
 class RegisterForm(FlaskForm):
+    name = StringField("Name", validators=[InputRequired("Please enter your name")])
     user_name=StringField("Username", validators=[InputRequired("Please enter a username")])
     email_id = StringField("Email Address", validators=[Email("Please enter a valid email")])
-    contact_number = FloatField("Contact Number", validators=[Length(min=10, max=10, message="Please enter a valid phone number")])
+    contact_number = IntegerField("Contact Number", validators=[NumberRange(min=0, max=9999999999, message="Please enter a valid phone number")])
     address = StringField("Address", validators=[InputRequired()])
     
     #add buyer/seller - check if it is a buyer or seller hint : Use RequiredIf field

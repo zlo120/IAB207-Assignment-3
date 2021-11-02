@@ -34,17 +34,23 @@
 
         <h4>Tickets Available: {{event.AvailableTickets}} / {{event.TotalTickets}}</h4>
         
+        {% if current_user.is_authenticated %}
         <!-- Button trigger modal for purchasing tickets -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookingModal">
           Purchase Tickets
         </button>
 
+        {% else %}
+        <a href="{{url_for('auth.login')}}" class="btn btn-primary">Login to book this event</a>
+
+        {% endif %}
+
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" style="color: black;" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" style="color: black;" id="bookingModalLabel">Modal title</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
