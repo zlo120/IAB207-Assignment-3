@@ -4,10 +4,11 @@ from flask_login import UserMixin
 class User(db.Model, UserMixin):
     __tablename__ = "users"
     Username = db.Column(db.String(256), primary_key = True, nullable = False)
-    Password = db.Column(db.String(256), nullable = False)
+    password_hash = db.Column(db.String(255), nullable = False)
     Name = db.Column(db.String(256), nullable = False)
     Email = db.Column(db.String(256), nullable = False)
     ContactNum = db.Column(db.Integer, nullable = True)
+    address = db.Column(db.String(100), index = True, nullable = False)
 
     # Foreign keys : Comment, Orders, Events?
     OrderID = db.Column(db.Integer, db.ForeignKey('orders.OrderID'))

@@ -1,28 +1,30 @@
 
 from flask_wtf import FlaskForm
-from wtforms.fields import SubmitField, StringField, PasswordField, IntegerField
+from wtforms.fields import SubmitField, StringField, PasswordField, IntegerField, FloatField, TextAreaField
 from wtforms.fields.html5 import DateField, TimeField
-from wtforms.validators import InputRequired, Email, EqualTo, Optional
+from wtforms.validators import InputRequired, Email, EqualTo, Optional, Length
 from flask_wtf.file import FileField, FileRequired, FileAllowed
 
 from datetime import datetime
 
 #creates the login information
 class LoginForm(FlaskForm):
-    user_name=StringField("User Name", validators=[InputRequired('Enter user name')])
-    password=PasswordField("Password", validators=[InputRequired('Enter user password')])
+    user_name = StringField("Username", validators=[InputRequired('Enter user name')])
+    password = PasswordField("Password", validators=[InputRequired('Enter a password')])
     submit = SubmitField("Login")
 
  # this is the registration form
 class RegisterForm(FlaskForm):
-    user_name=StringField("User Name", validators=[InputRequired()])
+    user_name=StringField("Username", validators=[InputRequired("Please enter a username")])
     email_id = StringField("Email Address", validators=[Email("Please enter a valid email")])
+    contact_number = FloatField("Contact Number", validators=[Length(min=10, max=10, message="Please enter a valid phone number")])
+    address = StringField("Address", validators=[InputRequired()])
     
     #add buyer/seller - check if it is a buyer or seller hint : Use RequiredIf field
 
 
     #linking two fields - password should be equal to data entered in confirm
-    password=PasswordField("Password", validators=[InputRequired(),
+    password=PasswordField("Password", validators=[InputRequired("Please enter a password"),
                   EqualTo('confirm', message="Passwords should match")])
     confirm = PasswordField("Confirm Password")
 
