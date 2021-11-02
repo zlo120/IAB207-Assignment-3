@@ -12,7 +12,6 @@ class User(db.Model, UserMixin):
 
     # Foreign keys : Comment, Orders, Events?
     OrderID = db.Column(db.Integer, db.ForeignKey('orders.OrderID'))
-
     Comments = db.relationship("Comment", backref="User")
 
 class Order(db.Model):
@@ -38,6 +37,7 @@ class Event(db.Model):
     __tablename__ = "events"
     EventID = db.Column(db.Integer, primary_key = True, nullable = False, autoincrement=True)
     Name = db.Column(db.String(256), nullable = False)
+    Description = db.Column(db.String(256), nullable = False)
     Status = db.Column(db.String(256), nullable = False)
     DateTime = db.Column(db.DateTime, nullable = False)
     Cost = db.Column(db.Integer, nullable = False)

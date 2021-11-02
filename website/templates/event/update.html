@@ -2,12 +2,15 @@
 
 {% block body %}
 
-<form style="width:60%;" method="POST" action="">
+<form class="formCentre" style="width:40%;" style="width:60%;" method="POST" action="">
     {{ form.hidden_tag() }}
 
-    <div class="form-group">
+    <div style="color: white;" class="form-group">
         {{form.Name.label}}
         {{form.Name (class="form-control", placeholder="Name of your event")}}
+
+        {{form.Description.label}}
+        <textarea class="form-control" id="Description" name="Description" placeholder="Description of your event" value="Party">{{event.Description}}</textarea>
 
         {{form.Category.label}}
         {{form.Category (class="form-control", placeholder="Category of your event")}}

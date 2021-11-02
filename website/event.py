@@ -7,8 +7,8 @@ import os
 from datetime import datetime
 
 from . import db
-from .forms import CreateEvent, createEditForm, CreateComment
-from .models import Event, Category, Comment
+from .forms import CreateEvent, createEditForm, CreateComment, bookEvent
+from .models import Event, Category, Comment, Order
 
 eventbp = Blueprint('event', __name__, url_prefix='/event')
 
@@ -37,6 +37,7 @@ def create():
 
         event = Event(
             Name = form.Name.data,
+            Description = form.Description.data,
             Status = "Upcoming",
             DateTime = datetime.strptime( (str(form.Date.data) + ' ' + str(form.Time.data)) , "%Y-%m-%d %H:%M:%S"),
             Cost = form.Cost.data,
@@ -97,6 +98,7 @@ def edit(id):
         event.Cost = form.Cost.data
         event.Address = form.Address.data
         event.TotalTickets = form.TotalTickets.data
+        event.Description = form.Description.data
 
         if form.Date.data is not None and form.Time.data is not None:
             event.DateTime = datetime.strptime( (str(form.Date.data) + ' ' + str(form.Time.data)) , "%Y-%m-%d %H:%M:%S")
@@ -105,13 +107,15 @@ def edit(id):
 
         return redirect(url_for('main.index'))
 
-    return render_template('event/update.html', form = form)
+    return render_template('event/update.html', form = form, event = event)
 
 @eventbp.route('/view/<int:id>', methods=['GET', 'POST'])
 def view(id):
     event = Event.query.filter_by(EventID = id).first()
 
     form = CreateComment()
+
+    bookingForm = bookEvent(event)
 
     if event is None:
         return "This event doesn't exist"
@@ -129,4 +133,26 @@ def view(id):
 
         return redirect(url_for('event.view', id=id))
     
-    return render_template("event/view.html", event = event, form = form)
+    return render_template("event/view.html", event = event, form = form , bookingForm = bookingForm)
+
+@eventbp.route('/booking/<int:id>', methods=['GET', 'POST'])
+def booking(id):
+
+    event = Event.query.filter_by(EventID = id).first()
+
+    form = bookEvent(event)
+
+    if form.validate_on_submit():
+
+        # order = Order(
+        #     NumTickets = form.Amount.data,
+        #     EventID = id,
+        #     Username = current_user.Username
+        # )
+
+        # db.session.add(order)
+        # db.session.commit()
+
+        return redirect(url_for('event.view', id = id))
+
+    return redirect(url_for('event.view', id = id))    
