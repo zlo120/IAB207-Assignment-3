@@ -2,7 +2,7 @@
 from flask_wtf import FlaskForm
 from wtforms.fields import SubmitField, StringField, PasswordField, IntegerField, TextAreaField
 from wtforms.fields.html5 import DateField, TimeField
-from wtforms.validators import InputRequired, Email, EqualTo, Optional
+from wtforms.validators import InputRequired, Email, EqualTo, NumberRange, Optional
 from flask_wtf.file import FileField, FileRequired, FileAllowed
 
 from datetime import datetime
@@ -32,6 +32,7 @@ class RegisterForm(FlaskForm):
 # EVENT FORMS
 
 ALLOWED_FILE = ['.PNG','.png',".jpg",'.JPG','.jpeg','.jpeg']
+
 
 class CreateEvent(FlaskForm):
     Name = StringField("Name", validators=[InputRequired()])
@@ -65,10 +66,13 @@ def createEditForm(event):
     
     return EditForm()
 
-# Booking form
-class CreateBooking(FlaskForm):
-    Amount = IntegerField("Number of Tickets", validators=[InputRequired()])
-    Submit = SubmitField("Place order")
+def bookEvent(event):
+    # Booking form
+    class CreateBooking(FlaskForm):
+        Amount = IntegerField("Number of Tickets", validators=[InputRequired(), NumberRange(min = 1, max = event.AvailableTickets)])
+        Submit = SubmitField("Place order")
+
+    return CreateBooking()
 
 # Comment form
 class CreateComment(FlaskForm):

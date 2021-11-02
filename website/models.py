@@ -11,7 +11,6 @@ class User(db.Model, UserMixin):
 
     # Foreign keys : Comment, Orders, Events?
     OrderID = db.Column(db.Integer, db.ForeignKey('orders.OrderID'))
-
     Comments = db.relationship("Comment", backref="User")
 
 class Order(db.Model):

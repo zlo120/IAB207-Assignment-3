@@ -55,7 +55,7 @@
 
                   <div class="form-group">
                     {{bookingForm.Amount.label}}
-                    {{bookingForm.Amount(class="form-control", type="number")}}
+                    {{bookingForm.Amount(class="form-control", type="number", max = event.AvailableTickets)}}
 
                     <label for="creditCard">Credit Card Number</label>
                     <input id="creditCard" type="text" class="form-control" required>
@@ -65,7 +65,7 @@
                       <input type="text" class="form-control" maxlength="2" style="width: 60px;" placeholder="MM">/<input type="text" class="form-control" maxlength="2"  style="width: 60px;" placeholder="YY" required>
                     </div>
 
-                    {{bookingForm.Submit(class="form-control mt-5")}}
+                    {{bookingForm.Submit(class="form-control mt-5 btn btn-primary")}}
 
                   </div>
 
