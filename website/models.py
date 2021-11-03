@@ -1,4 +1,5 @@
 from . import db
+from datetime import datetime
 from flask_login import UserMixin
 
 class User(db.Model, UserMixin):
@@ -31,7 +32,7 @@ class Comment(db.Model):
     __tablename__ = "comments"
     CommentID = db.Column(db.Integer, primary_key = True, nullable = False, autoincrement=True)
     Comment = db.Column(db.String(256), nullable = False)
-    DateTime = db.Column(db.DateTime, nullable = False)
+    DateTime = db.Column(db.DateTime, default=datetime.now())
     
     # Foreign keys : User, Event
     Username = db.Column(db.Integer, db.ForeignKey('users.Username'))

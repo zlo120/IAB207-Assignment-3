@@ -128,7 +128,6 @@ def view(id):
             Username = current_user.Username,
             EventID = id,
             Comment = form.Content.data,
-            DateTime = datetime.date(datetime.now())
         )
 
         db.session.add(comment)
