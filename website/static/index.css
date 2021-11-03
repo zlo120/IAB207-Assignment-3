@@ -90,3 +90,14 @@ hr {
 .modal-body label {
     color: black;
 }
+
+.comment {
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.comment-contents {
+    padding-left: 20px;
+    padding-top: 15px;
+}

@@ -79,5 +79,5 @@ def bookEvent(event):
 
 # Comment form
 class CreateComment(FlaskForm):
-    Content = StringField("Comment", validators=[InputRequired()])
+    Content = TextAreaField("Comment", validators=[InputRequired()])
     Submit = SubmitField("Post")

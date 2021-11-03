@@ -1,5 +1,6 @@
 from threading import current_thread
 from flask import Blueprint, abort
+from flask_login import current_user
 from flask.helpers import url_for
 from flask.templating import render_template
 from flask_login.utils import login_required
@@ -9,7 +10,7 @@ from datetime import datetime
 
 from . import db
 from .forms import CreateEvent, createEditForm, CreateComment, bookEvent
-from .models import Event, Category, Comment, Order
+from .models import Event, Category, Comment, Order, User
 
 eventbp = Blueprint('event', __name__, url_prefix='/event')
 
@@ -123,15 +124,15 @@ def view(id):
     bookingForm = bookEvent(event)
 
     if form.validate_on_submit():
-        # comment = Comment(
-        #     # Username = current_user.Username,
-        #     EventID = id,
-        #     Comment = form.Content.data,
-        #     DateTime = datetime.date(datetime.now())
-        # )
+        comment = Comment(
+            Username = current_user.Username,
+            EventID = id,
+            Comment = form.Content.data,
+            DateTime = datetime.date(datetime.now())
+        )
 
-        # db.session.add(comment)
-        # db.session.commit()
+        db.session.add(comment)
+        db.session.commit()
 
         return redirect(url_for('event.view', id=id))
     
@@ -151,6 +152,8 @@ def booking(id):
             EventID = id,
             Username = current_user.Username
         )
+
+        event.AvailableTickets -= form.Amount.data
 
         db.session.add(order)
         db.session.commit()
