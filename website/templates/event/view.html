@@ -34,7 +34,11 @@
 
         <h4>Tickets Available: {{event.AvailableTickets}} / {{event.TotalTickets}}</h4>
         
-        {% if current_user.is_authenticated %}
+        {% if event.AvailableTickets == 0 %}
+
+        <button type="button" class="btn btn-primary" disabled>Sold Out</button>
+
+        {% elif current_user.is_authenticated %}
         <!-- Button trigger modal for purchasing tickets -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookingModal">
           Purchase Tickets
