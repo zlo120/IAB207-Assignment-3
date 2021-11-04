@@ -1,5 +1,5 @@
 from threading import current_thread
-from flask import Blueprint, abort
+from flask import Blueprint, abort, flash
 from flask_login import current_user
 from flask.helpers import url_for
 from flask.templating import render_template
@@ -26,8 +26,12 @@ def create():
     if form.validate_on_submit():        
         category = Category.query.filter_by(Name = form.Category.data.upper()).first()
 
-        print(form.CoverImage.data)
+        event_datetime = datetime.strptime( (str(form.Date.data) + ' ' + str(form.Time.data)) , "%Y-%m-%d %H:%M:%S")
         
+        if event_datetime < datetime.now() :
+            flash("You can't create an event for the past!")
+            return redirect(url_for('event.create'))
+
         if category is None:
             category = Category(
                 Name = form.Category.data.upper()
@@ -44,7 +48,7 @@ def create():
             Name = form.Name.data,
             Description = form.Description.data,
             Status = "Upcoming",
-            DateTime = datetime.strptime( (str(form.Date.data) + ' ' + str(form.Time.data)) , "%Y-%m-%d %H:%M:%S"),
+            DateTime = event_datetime,
             Cost = form.Cost.data,
             Address = form.Address.data,
             AvailableTickets = form.TotalTickets.data,
@@ -91,6 +95,12 @@ def edit(id):
 
         category = Category.query.filter_by(Name = form.Category.data.upper()).first()
         
+        event_datetime = datetime.strptime( (str(form.Date.data) + ' ' + str(form.Time.data)) , "%Y-%m-%d %H:%M:%S")
+        
+        if event_datetime < datetime.now() :
+            flash("You can't create an event for the past!")
+            return redirect(url_for('event.edit', id = id))
+
         if category is None:
             category = Category(
                 Name = form.Category.data.upper()
