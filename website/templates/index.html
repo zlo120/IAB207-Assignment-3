@@ -6,12 +6,8 @@ Home
 {% endblock %}
 
 {% block header %}
-<style>
-p {
-    color: black;
-}
-</style>
-<section>
+
+<section style="background-color: #212529;">
     <div class="p-2 mb-4 rounded-3 col">
         <div style="color: white" class="container-fluid py-5">
             {% with messages = get_flashed_messages() %}
@@ -73,7 +69,7 @@ p {
 
                             {% endif %}
                         {% endfor %}
-                        
+
                     </div>
                 </section>
            
