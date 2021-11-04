@@ -45,7 +45,7 @@ class CreateEvent(FlaskForm):
     Time = TimeField("Time", validators=[InputRequired()])
     Cost = IntegerField("Cost", validators=[InputRequired()])
     Address = StringField("Address", validators=[InputRequired()])
-    TotalTickets = IntegerField("Total number of tickets", validators=[InputRequired()])
+    TotalTickets = IntegerField("Total number of tickets", validators=[InputRequired(), NumberRange(min=1)])
     
     Category = StringField("Category", validators=[InputRequired()])
 
@@ -62,7 +62,7 @@ def createEditForm(event):
         Time = TimeField("Time", validators=[Optional()])
         Cost = IntegerField("Cost", validators=[Optional()], render_kw={"value":event.Cost})
         Address = StringField("Address", validators=[Optional()], render_kw={"value":event.Address})
-        TotalTickets = IntegerField("Total number of tickets", validators=[Optional()], render_kw={"value":event.TotalTickets})
+        TotalTickets = IntegerField("Total number of tickets", validators=[Optional(), NumberRange(min=1)], render_kw={"value":event.TotalTickets})
         
         Category = StringField("Category", validators=[Optional()], render_kw={"value":event.Category.Name})
 
