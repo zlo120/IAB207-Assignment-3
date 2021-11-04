@@ -6,12 +6,8 @@ Home
 {% endblock %}
 
 {% block header %}
-<style>
-p {
-    color: black;
-}
-</style>
-<section>
+
+<section style="background-color: #212529;">
     <div class="p-2 mb-4 rounded-3 col">
         <div style="color: white" class="container-fluid py-5">
             {% with messages = get_flashed_messages() %}
@@ -46,16 +42,16 @@ p {
 
         {% if events | length != 0 %}
             {% for category in categories %}
-            <div class="row padB"></div>
+            
                 <section id="{{category.Name}}" style="padding-bottom: 3%"  class="collapse show">
-                    
+                    <div class="row padB">
 
                         {% for event in events %}
                             {% if event.Category == category %}
                             
                                 <div class="col-xs-12 col-md-6 col-lg-3">
                                     <div class="card">
-                                        <img src="{{ url_for('static' , filename=event.Image) }}"  style="width: 440px;" class="card-img-top maxH" alt="...">
+                                        <img src="{{ url_for('static' , filename=event.Image) }}"  class="card-img-top maxH" alt="...">
                                         <div class="card-body">
                                             <h5 class="card-title">{{event.Name}}</h5>
                                             <p class="card-text">{{event.Description}}</p>
@@ -74,8 +70,9 @@ p {
                             {% endif %}
                         {% endfor %}
 
+                    </div>
                 </section>
-            </div>
+           
             {% endfor %}
         {% endif %}
 
