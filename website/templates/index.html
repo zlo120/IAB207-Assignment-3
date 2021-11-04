@@ -39,14 +39,14 @@ p {
         <b style="color: white; ">Featured Event Categories: </b>
         {% if events | length != 0 %}
             {% for category in categories %}
-                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#{{category.Name}}" aria-expanded="false" aria-controls="{{category.Name}}">{{category.Name}}</button>
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#{{category.Name}}" aria-expanded="true" aria-controls="{{category.Name}}">{{category.Name}}</button>
             {% endfor %}
         {% endif %}
     </p>
 
         {% if events | length != 0 %}
             {% for category in categories %}
-            <section id="{{category.Name}}" style="padding-bottom: 3%"  class="collapse">
+            <section id="{{category.Name}}" style="padding-bottom: 3%"  class="collapse show">
                 <div class="row padB">
 
                     {% for event in events %}
