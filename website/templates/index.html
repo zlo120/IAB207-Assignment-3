@@ -7,7 +7,7 @@ Home
 
 {% block header %}
 
-<section style="background-color: #212529;">
+<section style="background-color: #160c1b;">
     <div class="p-2 mb-4 rounded-3 col">
         <div style="color: white" class="container-fluid py-5">
             {% with messages = get_flashed_messages() %}
@@ -49,7 +49,7 @@ Home
                         {% for event in events %}
                             {% if event.Category == category %}
                             
-                                <div class="col-xs-12 col-md-6 col-lg-3">
+                                <div class="padB col-xs-12 col-sm-6 col-md-4 col-lg-3">
                                     <div class="card">
                                         <img src="{{ url_for('static' , filename=event.Image) }}"  class="card-img-top maxH" alt="...">
                                         <div class="card-body">
