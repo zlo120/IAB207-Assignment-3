@@ -130,3 +130,7 @@ hr {
     height: 15vw;
     object-fit: cover;
 }
+
+.center2 {
+    text-align: center;
+}
