@@ -79,8 +79,11 @@ def edit(id):
 
     event = Event.query.filter_by(EventID = id).first()
 
+    if current_user.Username != event.Username:
+        abort(404)
+
     if event is None:
-        return "This event doesn't exist"
+        abort(404)
    
     form = createEditForm(event)
 
