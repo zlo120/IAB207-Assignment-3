@@ -52,25 +52,31 @@ def create_app():
     from . import event
     app.register_blueprint(event.eventbp)
 
-    
-    @app.errorhandler(404)
-    def page_not_found(e):
-        return render_template("error_handlers/404.html")
+    @app.errorhandler(400)
+    def bad_request(e):
+        return render_template("error_handlers/400.html")
         
     @app.errorhandler(401)
     def not_authenticated(e):
         return render_template("error_handlers/401.html")
         
     @app.errorhandler(403)
-    def not_authenticated(e):
+    def unauthorised(e):
         return render_template("error_handlers/403.html")
         
     @app.errorhandler(404)
-    def not_authenticated(e):
+    def not_found(e):
         return render_template("error_handlers/404.html")
         
     @app.errorhandler(500)
-    def not_authenticated(e):
+    def internal_error(e):
         return render_template("error_handlers/500.html")
+
+    app.register_error_handler(400, bad_request)
+    app.register_error_handler(401, not_authenticated)
+    app.register_error_handler(403, unauthorised)
+    app.register_error_handler(404, not_found)
+    app.register_error_handler(500, internal_error)
+
     
     return app
