@@ -44,7 +44,7 @@ Home
             {% for category in categories %}
             
                 <section id="{{category.Name}}" style="padding-bottom: 3%"  class="collapse show">
-                    <div class="row padB"></div>
+                    <div class="row padB">
 
                         {% for event in events %}
                             {% if event.Category == category %}
