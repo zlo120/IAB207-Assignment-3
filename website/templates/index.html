@@ -44,21 +44,18 @@ p {
 <section >
     <p class="padS">
         <b style="color: white">Featured Event Categories:</b>
-        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">Halloween</button>
-        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Rock</button>
-        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">90's</button>
-        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample4" aria-expanded="false" aria-controls="multiCollapseExample4">Wine</button>
-        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample5" aria-expanded="false" aria-controls="multiCollapseExample5">Whiskey</button>
-        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2 multiCollapseExample3 multiCollapseExample4 multiCollapseExample5">All</button>
+        {% if events | length != 0 %}
+        {% for category in categories %}
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#{{category.Name}}" aria-expanded="false" aria-controls="{{category.Name}}">{{category.Name}}</button>
+            {% endfor %}
+        {% endif %}
     </p>
-
-
 
     <div style="color: black" class="row padS padB" >
 
         {% if events | length != 0 %}
-            {% for  category in categories %}
-            <section id="{{category.Name}}">
+            {% for category in categories %}
+            <section id="{{category.Name}}" style="padding-bottom: 3%"  class="collapse multi-collapse">
                 {% for event in events %}
                     {% if event.Category == category %}
                     <div class="row padB">
