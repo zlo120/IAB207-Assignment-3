@@ -166,7 +166,7 @@ def booking(id):
         db.session.add(order)
         db.session.commit()
 
-        return redirect(url_for('event.order', id = id))
+        return redirect(url_for('event.order', id = order.OrderID))
 
     return redirect(url_for('event.view', id = id))    
 
