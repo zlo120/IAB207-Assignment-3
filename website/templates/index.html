@@ -23,15 +23,8 @@ p {
                 {% endfor %}
             {% endif %}
             {% endwith %}
-            <h1 class="display-5 fw-bold">Party Event Management</h1>
-            <p style="color: white" class="col-md-8 fs-4">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dapibus metus vel sapien scelerisque ultricies. Quisque tristique, nunc non iaculis tempus, ipsum mi malesuada dolor, quis maximus tellus risus quis.</p>
-
-            <form id="search">
-                <input class="form-control me-2" type="search" placeholder="Search Events" aria-label="Search">
-                <button class="btn btn-primary btn-lg col-2" type="button">Search</button>
-            </form>
-
+            <h1 style="text-align: center;" class="display-5 fw-bold">Party Event Management</h1>
+            <p style="color: white; text-align: center;" class="col-md-8 fs-4"> Welcome to Part Event Managment </p>
         </div>
     </div>
 </section>
@@ -43,7 +36,7 @@ p {
 
 <section >
     <p class="padS">
-        <b style="color: white">Featured Event Categories:</b>
+        <b style="color: white; ">Featured Event Categories: </b>
         {% if events | length != 0 %}
         {% for category in categories %}
             <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#{{category.Name}}" aria-expanded="false" aria-controls="{{category.Name}}">{{category.Name}}</button>
