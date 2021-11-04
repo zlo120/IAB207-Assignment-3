@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="container">
+    <h1 class="mt-5">Booking History</h1>
+
+    <div class="row">
+        {% for order in orders %}
+        <div class="col-xs-12 col-md-6 col-lg-3">
+            <div class="card">
+                <img src="{{url_for('static', filename=order.Event.Image)}}"  style="height: 250px;" class="card-img-top maxH" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Order ID: {{order.OrderID}}</h5>
+                    <p class="card-text"><strong>Event name: {{order.Event.Name}}</strong></p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Event Status: {{order.Event.Status}}</li>
+                    <li class="list-group-item">Tickets Left: {{order.Event.AvailableTickets}}</li>
+                    <li class="list-group-item">Ticket Price: ${{order.Event.Cost}}</li>
+                </ul>
+                <div class="card-body">                    
+                    <a href="{{url_for('event.view', id = order.Event.EventID)}}" class="btn btn-primary btn-lg col-12">Event Details</a>
+                    <a href="{{url_for('event.order', id = order.OrderID)}}" class="btn btn-secondary btn-lg mt-3 col-12">Order Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

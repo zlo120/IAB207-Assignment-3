@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="container d-flex justify-content-center">
+
+
+    <div class="order mt-5">
+
+        <h1 class="black ">{{order.Event.Name}}</h1>
+
+        <h4 class="black ">Order ID: {{order.OrderID}}</h4>
+
+        <hr>
+
+        <p>This is an order for {{order.NumTickets}} ticket(s).</p>
+
+        <br>
+
+        <p>Cost of Each Tickets: ${{order.Event.Cost}}</p>
+
+        <br>
+        
+        <p>Total Purchase Amount: ${{order.NumTickets * order.Event.Cost}}</p>
+
+        <a href="{{url_for('event.view', id = order.Event.EventID)}}" class="btn btn-primary">View Event Page</a>
+
+    </div>
+
+
+</div>
+
+{% endblock %}

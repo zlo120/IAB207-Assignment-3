@@ -1,6 +1,7 @@
 
 from flask_wtf import FlaskForm
-from wtforms.fields import SubmitField, StringField, PasswordField, IntegerField, FloatField, TextAreaField
+from wtforms import validators
+from wtforms.fields import SubmitField, StringField, PasswordField, IntegerField, FloatField, TextAreaField, BooleanField
 from wtforms.fields.html5 import DateField, TimeField
 from wtforms.validators import InputRequired, Email, EqualTo, Optional, Length, NumberRange
 from flask_wtf.file import FileField, FileRequired, FileAllowed
@@ -64,8 +65,10 @@ def createEditForm(event):
         TotalTickets = IntegerField("Total number of tickets", validators=[Optional()], render_kw={"value":event.TotalTickets})
         
         Category = StringField("Category", validators=[Optional()], render_kw={"value":event.Category.Name})
+
+        CancelEvent = BooleanField("Cancel this event?", validators=[Optional()])
         
-        Create = SubmitField("Create")
+        Create = SubmitField("Edit")
     
     return EditForm()
 

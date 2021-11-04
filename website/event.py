@@ -8,6 +8,8 @@ from werkzeug.utils import redirect, secure_filename
 import os
 from datetime import datetime
 
+from website.auth import login
+
 from . import db
 from .forms import CreateEvent, createEditForm, CreateComment, bookEvent
 from .models import Event, Category, Comment, Order, User
@@ -48,7 +50,8 @@ def create():
             AvailableTickets = form.TotalTickets.data,
             TotalTickets = form.TotalTickets.data,
             CategoryID = category.CategoryID,
-            Image = db_file_path        
+            Image = db_file_path,
+            Username = current_user.Username       
         )
 
         db.session.add(event)
@@ -102,6 +105,9 @@ def edit(id):
         event.Address = form.Address.data
         event.TotalTickets = form.TotalTickets.data
         event.Description = form.Description.data
+
+        if form.CancelEvent.data:
+            event.Status = "Cancelled"
 
         if form.Date.data is not None and form.Time.data is not None:
             event.DateTime = datetime.strptime( (str(form.Date.data) + ' ' + str(form.Time.data)) , "%Y-%m-%d %H:%M:%S")
@@ -157,6 +163,27 @@ def booking(id):
         db.session.add(order)
         db.session.commit()
 
-        return redirect(url_for('event.view', id = id))
+        return redirect(url_for('event.order', id = id))
 
     return redirect(url_for('event.view', id = id))    
+
+@eventbp.route('/order/history')
+@login_required
+def history():
+    
+    orders = current_user.Orders
+
+    return render_template('event/history.html', orders = orders)
+
+@eventbp.route('/order/<int:id>')
+@login_required
+def order(id):
+
+    orders = current_user.Orders
+
+    for order in orders:
+        if id == order.OrderID:
+            return render_template('event/order.html', order = order)
+
+    return abort(404)
+

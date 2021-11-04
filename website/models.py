@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
     address = db.Column(db.String(100), index = True, nullable = False)
 
     # Foreign keys : Comment, Orders, Events?
-    OrderID = db.Column(db.Integer, db.ForeignKey('orders.OrderID'))
+    Orders = db.relationship("Order", backref="User")
     Comments = db.relationship("Comment", backref="User")
 
     def get_id(self):
