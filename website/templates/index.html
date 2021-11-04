@@ -6,7 +6,7 @@ Home
 {% endblock %}
 
 {% block header %}
-
+<!--- Page Heading Block---> 
 <section style="background-color: #160c1b;">
     <div class="p-2 mb-4 rounded-3 col">
         <div style="color: white" class="container-fluid py-5">
@@ -29,7 +29,7 @@ Home
 
 {% block body %}
 
-
+<!--- Events Selection Buttons ---> 
 <section >
     <p class="padS">
         <b style="color: white; ">Featured Event Categories: </b>
@@ -40,6 +40,7 @@ Home
         {% endif %}
     </p>
 
+    <!--- Printing selected events to page ---> 
         {% if events | length != 0 %}
             {% for category in categories %}
             
