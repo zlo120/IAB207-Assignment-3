@@ -46,9 +46,9 @@ p {
 
         {% if events | length != 0 %}
             {% for category in categories %}
-            <div class="row padB"></div>
+            
                 <section id="{{category.Name}}" style="padding-bottom: 3%"  class="collapse show">
-                    
+                    <div class="row padB"></div>
 
                         {% for event in events %}
                             {% if event.Category == category %}
@@ -73,9 +73,10 @@ p {
 
                             {% endif %}
                         {% endfor %}
-
+                        
+                    </div>
                 </section>
-            </div>
+           
             {% endfor %}
         {% endif %}
 
