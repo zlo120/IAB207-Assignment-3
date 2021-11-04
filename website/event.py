@@ -34,15 +34,17 @@ def create():
 
         if category is None:
             category = Category(
-                Name = form.Category.data.upper()
+                Name = form.Category.data.upper().replace(' ', '_')
             )
+
+            print(f'\n\n\n{category}\n\n\n')
 
             db.session.add(category)
             db.session.commit()
 
-            category = Category.query.filter_by(Name = form.Category.data.upper()).first()
-
         db_file_path = check_upload_file(form)
+
+        print(f'\n\n\n{category}\n\n\n')
 
         event = Event(
             Name = form.Name.data,
@@ -103,14 +105,11 @@ def edit(id):
 
         if category is None:
             category = Category(
-                Name = form.Category.data.upper()
+                Name = form.Category.data.upper().replace(' ', '_')
             )
 
             db.session.add(category)
             db.session.commit()
-
-            category = Category.query.filter_by(Name = form.Category.data.upper()).first()
-
 
         event.Name = form.Name.data
         event.CategoryID = category.CategoryID        
